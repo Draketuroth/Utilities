@@ -10,6 +10,8 @@
 
 typedef unsigned int Unsigned_Type;
 
+constexpr Unsigned_Type MAX_YEAR = 2400u;
+
 // The Gregorian calendar consists of the following 12 months:
 // 1. January - 31 days
 // 2. February - 28 days in a common year and 29 days in leap years
@@ -31,14 +33,14 @@ typedef unsigned int Unsigned_Type;
 // A leap year is every 4 years, but not every 100 years, then again every 400 years.
 
 Unsigned_Type LeapYears[24] = {
-4u, 8u, 12u, 16u, 20u, 24u, 28u, 32u, 36u, 40u, 44u, 48u, 
-52u, 56u, 60u, 64u, 68u, 72u, 76u, 80u, 84u, 88u, 92u, 96u };
+2004u, 2008u, 2012u, 2016u, 2020u, 2024u, 2028u, 2032u, 2036u, 2040u, 2044u, 2048u,
+2052u, 2056u, 2060u, 2064u, 2068u, 2072u, 2076u, 2080u, 2084u, 2088u, 2092u, 2096u };
 
 bool IsDateValid(const Unsigned_Type Year, const Unsigned_Type Month, const Unsigned_Type Day)
 {
     bool Date_Valid = false;
 
-    if (Year >= 0u && Year <= 99u) {
+    if (Year >= 0u && Year <= MAX_YEAR) {
 
         if (Month == 1u || Month == 3u || Month == 5u || Month == 7u || Month == 8u || Month == 10u || Month == 12u) {
 
@@ -89,7 +91,7 @@ void InvalidInput()
 
 void TestSuite() 
 {
-    Unsigned_Type Year = 30u;
+    Unsigned_Type Year = 2030u;
     Unsigned_Type Month = 12u;
     Unsigned_Type Day = 31u;
 
@@ -132,7 +134,7 @@ void TestSuite()
 
     PressEnterToContinue();
 
-    Year = 20u;
+    Year = 2020u;
     Month = 0u;
     Day = 31u;
 
@@ -147,7 +149,7 @@ void TestSuite()
 
     PressEnterToContinue();
 
-    Year = 20u;
+    Year = 2020u;
     Month = 0u;
     Day = 30u;
 
@@ -170,7 +172,7 @@ int main(int argc, char** argv)
 
     while (Running) {
         std::system("clear");
-        std::cout << "Welcome to the DateValidator!\n1: Enter Manual Date\n2: Run Test Suite\n3: Instructions\n4: Exit" << std::endl;
+        std::cout << "//////DateValidator//////\n1: Enter Manual Date\n2: Run Test Suite\n3: Instructions\n4: Exit" << std::endl;
         if (std::cin >> Option) {
             switch (Option)
             {
@@ -238,8 +240,8 @@ int main(int argc, char** argv)
             {
                 std::system("clear");
                 std::cout << "The DateValidator works with dates in the following format:\n";
-                std::cout << "YY-MM-DD\n\n";
-                std::cout << "Note that years are only accepted in the range 0 - 99\n";
+                std::cout << "YYYY-MM-DD\n\n";
+                std::cout << "Note that years are only accepted in the range 0 - 2400\n";
                 ClearInput();
                 PressEnterToContinue();
                 break;
@@ -250,6 +252,10 @@ int main(int argc, char** argv)
                 break;
             }
             default:
+                std::system("clear");
+                std::cout << "Enter a valid option!\n";
+                ClearInput();
+                PressEnterToContinue();
                 break;
             }
         }
